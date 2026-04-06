@@ -4,8 +4,6 @@ namespace ExChangeIt;
 
 public partial class MainPage : ContentPage
 {
-    private const string apiKey = "bf5b018cc8f2164a3146ed29508d8afa";
-
     public MainPage()
     {
         InitializeComponent();
@@ -33,6 +31,7 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(RatesPage));
     }
+
     private async void OnConvertClicked(object sender, EventArgs e)
     {
         rateLabel.Text = string.Empty;
@@ -61,7 +60,7 @@ public partial class MainPage : ContentPage
         string baseCurrency = basePicker.SelectedItem.ToString()!;
         string targetCurrency = targetPicker.SelectedItem.ToString()!;
 
-        string url = $"https://api.exchangeratesapi.io/v1/latest?access_key={apiKey}&symbols={baseCurrency},{targetCurrency},EUR";
+        string url = $"https://api.exchangeratesapi.io/v1/latest?access_key={ApiConfig.ApiKey}";
 
         try
         {

@@ -16,7 +16,7 @@ public partial class RatesPage : ContentPage
     {
         try
         {
-            string url = "https://api.exchangerate-api.com/v4/latest/USD";
+            string url = $"https://api.exchangeratesapi.io/v1/latest?access_key={ApiConfig.ApiKey}";
 
             using HttpClient client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(15);
@@ -24,24 +24,23 @@ public partial class RatesPage : ContentPage
             var response = await client.GetStringAsync(url);
             var data = JsonSerializer.Deserialize<ExchangeRateResponse>(response);
 
-            if (data?.rates != null)
-            {
-                allRates = data.rates
-                    .OrderBy(r => r.Key)
-                    .Select(r => new CurrencyBoardRate
-                    {
-                        Currency = r.Key,
-                        Buying = (r.Value * 0.98).ToString("F4"),
-                        Selling = (r.Value * 1.02).ToString("F4")
-                    })
-                    .ToList();
-
-                currencyCollectionView.ItemsSource = allRates;
-            }
-            else
+            if (data == null || !data.success || data.rates == null)
             {
                 await DisplayAlert("Error", "Unable to load live rates.", "OK");
+                return;
             }
+
+            allRates = data.rates
+                .OrderBy(r => r.Key)
+                .Select(r => new CurrencyBoardRate
+                {
+                    Currency = r.Key,
+                    Buying = r.Value.ToString("F4"),
+                    Selling = r.Value.ToString("F4")
+                })
+                .ToList();
+
+            currencyCollectionView.ItemsSource = allRates;
         }
         catch (TaskCanceledException)
         {
@@ -72,7 +71,7 @@ public partial class RatesPage : ContentPage
         }
 
         var filteredRates = allRates
-            .Where(r => r.Currency.Contains(searchText))
+            .Where(r => r.Currency.ToUpper().Contains(searchText))
             .ToList();
 
         currencyCollectionView.ItemsSource = filteredRates;

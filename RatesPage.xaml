@@ -70,16 +70,11 @@
                                FontAttributes="Bold"
                                Grid.Column="0"
                                HorizontalOptions="Center" />
-                        <Label Text="Buying"
-                               TextColor="White"
-                               FontAttributes="Bold"
-                               Grid.Column="1"
-                               HorizontalOptions="Center" />
-                        <Label Text="Selling"
-                               TextColor="White"
-                               FontAttributes="Bold"
-                               Grid.Column="2"
-                               HorizontalOptions="Center" />
+                        <Label Text="Rate"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                Grid.Column="1"
+                                HorizontalOptions="Center" />
                     </Grid>
 
                     <CollectionView x:Name="currencyCollectionView"
@@ -104,13 +99,6 @@
                                                TextColor="#059669"
                                                FontAttributes="Bold"
                                                Grid.Column="1"
-                                               HorizontalTextAlignment="Center"
-                                               VerticalOptions="Center" />
-
-                                        <Label Text="{Binding Selling}"
-                                               TextColor="#DC2626"
-                                               FontAttributes="Bold"
-                                               Grid.Column="2"
                                                HorizontalTextAlignment="Center"
                                                VerticalOptions="Center" />
                                     </Grid>
