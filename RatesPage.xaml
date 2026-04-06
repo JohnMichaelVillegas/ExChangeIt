@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExChangeIt.RatesPage"
+             Title="Live Rates"
+             BackgroundColor="#F5F7FB">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="📈 Live Rates"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#1F2937"
+                       HorizontalOptions="Center" />
+
+                <Label Text="Browse and search current exchange rates"
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <Border BackgroundColor="White"
+                    Stroke="#E5E7EB"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20">
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Search Currency"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#111827" />
+
+                    <Border BackgroundColor="#F9FAFB"
+                            Stroke="#D1D5DB"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12,2">
+                        <SearchBar x:Name="currencySearchBar"
+                                   Placeholder="Search by currency code (e.g. PHP, USD)"
+                                   TextChanged="OnSearchTextChanged"
+                                   BackgroundColor="Transparent"
+                                   TextColor="#111827"
+                                   PlaceholderColor="#9CA3AF" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White"
+                    Stroke="#E5E7EB"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="16">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Exchange Rate Board"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#111827"
+                           HorizontalOptions="Center" />
+
+                    <Grid ColumnDefinitions="2*,*,*"
+                          BackgroundColor="#4F46E5"
+                          Padding="12"
+                          ColumnSpacing="10">
+                        <Label Text="Currency"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               Grid.Column="0"
+                               HorizontalOptions="Center" />
+                        <Label Text="Buying"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               HorizontalOptions="Center" />
+                        <Label Text="Selling"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               Grid.Column="2"
+                               HorizontalOptions="Center" />
+                    </Grid>
+
+                    <CollectionView x:Name="currencyCollectionView"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Stroke="#E5E7EB"
+                                        StrokeThickness="1"
+                                        BackgroundColor="#F9FAFB"
+                                        StrokeShape="RoundRectangle 10"
+                                        Padding="10"
+                                        Margin="0,4">
+                                    <Grid ColumnDefinitions="2*,*,*"
+                                          ColumnSpacing="10">
+                                        <Label Text="{Binding Currency}"
+                                               TextColor="#111827"
+                                               FontAttributes="Bold"
+                                               Grid.Column="0"
+                                               VerticalOptions="Center" />
+
+                                        <Label Text="{Binding Buying}"
+                                               TextColor="#059669"
+                                               FontAttributes="Bold"
+                                               Grid.Column="1"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="Center" />
+
+                                        <Label Text="{Binding Selling}"
+                                               TextColor="#DC2626"
+                                               FontAttributes="Bold"
+                                               Grid.Column="2"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="Center" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
