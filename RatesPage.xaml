@@ -9,7 +9,7 @@
         <VerticalStackLayout Padding="24" Spacing="20">
 
             <VerticalStackLayout Spacing="6">
-                <Label Text="📈 Live Rates"
+                <Label Text="Live Rates"
                        FontSize="28"
                        FontAttributes="Bold"
                        TextColor="#1F2937"
@@ -61,7 +61,7 @@
                            TextColor="#111827"
                            HorizontalOptions="Center" />
 
-                    <Grid ColumnDefinitions="2*,*,*"
+                    <Grid ColumnDefinitions="2*,*"
                           BackgroundColor="#4F46E5"
                           Padding="12"
                           ColumnSpacing="10">
@@ -71,10 +71,10 @@
                                Grid.Column="0"
                                HorizontalOptions="Center" />
                         <Label Text="Rate"
-                                TextColor="White"
-                                FontAttributes="Bold"
-                                Grid.Column="1"
-                                HorizontalOptions="Center" />
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               HorizontalOptions="Center" />
                     </Grid>
 
                     <CollectionView x:Name="currencyCollectionView"
@@ -87,7 +87,7 @@
                                         StrokeShape="RoundRectangle 10"
                                         Padding="10"
                                         Margin="0,4">
-                                    <Grid ColumnDefinitions="2*,*,*"
+                                    <Grid ColumnDefinitions="2*,*"
                                           ColumnSpacing="10">
                                         <Label Text="{Binding Currency}"
                                                TextColor="#111827"
@@ -113,3 +113,4 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+
